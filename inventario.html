@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario - TechZone</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">⚡ TechZone</div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="estructura.html">Nosotros</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="inventario.html" class="activo">Inventario</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero hero-small">
+      <h1>Inventario y <span class="accent">Precios</span></h1>
+      <p class="subtitulo">Consulta disponibilidad en tiempo real</p>
+    </section>
+
+    <!-- TÓPICO 4.4: Vectores paralelos con JavaScript -->
+    <section class="card-section">
+      <h2>Sistema de Inventario</h2>
+      <p>
+        Usamos <strong>vectores paralelos</strong> en JavaScript para manejar los datos de nuestros
+        productos. Cada arreglo contiene información relacionada en la misma posición:
+        producto, precio y unidades disponibles.
+      </p>
+
+      <div class="controles-inv">
+        <button onclick="mostrarTodo()">📋 Mostrar Todo</button>
+        <button onclick="calcularTotal()">💰 Total Inventario</button>
+        <button onclick="calcularPromedio()">📊 Precio Promedio</button>
+        <button onclick="buscarMasCaro()">⬆️ Más Caro</button>
+        <button onclick="buscarMasBarato()">⬇️ Más Barato</button>
+        <button onclick="contarDisponibles()">🔢 Contar Disponibles</button>
+      </div>
+
+      <div class="busqueda-inv">
+        <input type="text" id="buscarProducto" placeholder="Buscar producto por nombre...">
+        <button onclick="buscarProductoNombre()">🔍 Buscar</button>
+      </div>
+
+      <div id="resultado-operacion" class="resultado-op"></div>
+
+      <div id="tabla-inventario"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 TechZone | Desarrollado por Lia Ramirez Fernandez | ISO310 - Unidad 4</p>
+    <p>
+      <a href="https://www.w3schools.com/html/" target="_blank">Referencia HTML - W3Schools</a> |
+      <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank">MDN Web Docs</a>
+    </p>
+  </footer>
+
+  <script>
+    // =====================================================
+    // TÓPICO 4.4 - VECTORES PARALELOS
+    // Tres vectores relacionados por índice:
+    // productos[i] → precios[i] → cantidades[i]
+    // =====================================================
+
+    const productos   = ["Laptop Dell Inspiron", "iPhone 15 Pro", "Samsung Galaxy S24",
+                         "Monitor HP 24\"", "Teclado Logitech MX", "Mouse Inalámbrico",
+                         "Audífonos Sony WH", "Tablet iPad Air", "Laptop Asus ROG",
+                         "Cargador USB-C 65W"];
+
+    const precios     = [35000, 62000, 48000, 12500, 4800, 2200, 8900, 28000, 55000, 1500];
+
+    const cantidades  = [8, 5, 7, 12, 20, 30, 15, 6, 3, 40];
+
+    // Mostrar tabla completa
+    function mostrarTodo() {
+      let html = `
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Producto</th>
+              <th>Precio (RD$)</th>
+              <th>Unidades</th>
+              <th>Subtotal (RD$)</th>
+            </tr>
+          </thead>
+          <tbody>`;
+
+      for (let i = 0; i < productos.length; i++) {
+        const subtotal = precios[i] * cantidades[i];
+        html += `
+            <tr>
+              <td>${i + 1}</td>
+              <td>${productos[i]}</td>
+              <td>${precios[i].toLocaleString()}</td>
+              <td>${cantidades[i]}</td>
+              <td>${subtotal.toLocaleString()}</td>
+            </tr>`;
+      }
+
+      html += `</tbody></table>`;
+      document.getElementById("tabla-inventario").innerHTML = html;
+      mostrarResultado("Se muestran todos los " + productos.length + " productos.", "info");
+    }
+
+    // Calcular total del inventario
+    function calcularTotal() {
+      let total = 0;
+      for (let i = 0; i < productos.length; i++) {
+        total += precios[i] * cantidades[i];
+      }
+      mostrarResultado("💰 Valor total del inventario: RD$ " + total.toLocaleString(), "exito");
+      mostrarTodo();
+    }
+
+    // Calcular precio promedio
+    function calcularPromedio() {
+      let suma = 0;
+      for (let i = 0; i < precios.length; i++) {
+        suma += precios[i];
+      }
+      const promedio = Math.round(suma / precios.length);
+      mostrarResultado("📊 Precio promedio de productos: RD$ " + promedio.toLocaleString(), "info");
+      mostrarTodo();
+    }
+
+    // Buscar el producto más caro
+    function buscarMasCaro() {
+      let maxIdx = 0;
+      for (let i = 1; i < precios.length; i++) {
+        if (precios[i] > precios[maxIdx]) maxIdx = i;
+      }
+      mostrarResultado(
+        "⬆️ Producto más caro: <strong>" + productos[maxIdx] +
+        "</strong> — RD$ " + precios[maxIdx].toLocaleString(), "exito");
+      mostrarTodo();
+    }
+
+    // Buscar el producto más barato
+    function buscarMasBarato() {
+      let minIdx = 0;
+      for (let i = 1; i < precios.length; i++) {
+        if (precios[i] < precios[minIdx]) minIdx = i;
+      }
+      mostrarResultado(
+        "⬇️ Producto más barato: <strong>" + productos[minIdx] +
+        "</strong> — RD$ " + precios[minIdx].toLocaleString(), "info");
+      mostrarTodo();
+    }
+
+    // Contar productos disponibles (cantidad > 0)
+    function contarDisponibles() {
+      let count = 0;
+      for (let i = 0; i < cantidades.length; i++) {
+        if (cantidades[i] > 0) count++;
+      }
+      mostrarResultado("🔢 Productos con unidades disponibles: " + count + " de " + productos.length, "info");
+      mostrarTodo();
+    }
+
+    // Buscar producto por nombre
+    function buscarProductoNombre() {
+      const termino = document.getElementById("buscarProducto").value.toLowerCase().trim();
+      if (!termino) { mostrarResultado("Escribe un nombre para buscar.", "alerta"); return; }
+
+      let encontrados = [];
+      for (let i = 0; i < productos.length; i++) {
+        if (productos[i].toLowerCase().includes(termino)) {
+          encontrados.push(i);
+        }
+      }
+
+      if (encontrados.length === 0) {
+        mostrarResultado('No se encontró ningún producto con "' + termino + '"', "alerta");
+        document.getElementById("tabla-inventario").innerHTML = "";
+        return;
+      }
+
+      let html = `<table>
+        <thead><tr><th>#</th><th>Producto</th><th>Precio (RD$)</th><th>Unidades</th></tr></thead>
+        <tbody>`;
+
+      encontrados.forEach(i => {
+        html += `<tr>
+          <td>${i + 1}</td>
+          <td>${productos[i]}</td>
+          <td>${precios[i].toLocaleString()}</td>
+          <td>${cantidades[i]}</td>
+        </tr>`;
+      });
+
+      html += "</tbody></table>";
+      document.getElementById("tabla-inventario").innerHTML = html;
+      mostrarResultado("🔍 Se encontraron " + encontrados.length + " resultado(s).", "exito");
+    }
+
+    // Mostrar mensaje de resultado
+    function mostrarResultado(mensaje, tipo) {
+      const div = document.getElementById("resultado-operacion");
+      div.innerHTML = mensaje;
+      div.className = "resultado-op resultado-" + tipo;
+    }
+
+    // Mostrar todo al cargar
+    window.onload = mostrarTodo;
+  </script>
+
+</body>
+</html>

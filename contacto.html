@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - TechZone</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">⚡ TechZone</div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="estructura.html">Nosotros</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="inventario.html">Inventario</a>
+      <a href="contacto.html" class="activo">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero hero-small">
+      <h1>Contacto y <span class="accent">Pedidos</span></h1>
+      <p class="subtitulo">Estamos listos para atenderte</p>
+    </section>
+
+    <!-- TÓPICO 4.5: TABLA -->
+    <section class="card-section">
+      <h2>📦 Planes de Garantía</h2>
+      <p>Todos nuestros productos incluyen garantía. Elige el plan que más te convenga:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Duración</th>
+            <th>Cobertura</th>
+            <th>Soporte Técnico</th>
+            <th>Precio (RD$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Básico</strong></td>
+            <td>6 meses</td>
+            <td>Defectos de fábrica</td>
+            <td>Presencial</td>
+            <td>Incluido</td>
+          </tr>
+          <tr>
+            <td><strong>Estándar</strong></td>
+            <td>1 año</td>
+            <td>Defectos + daños internos</td>
+            <td>Presencial + Remoto</td>
+            <td>1,500</td>
+          </tr>
+          <tr>
+            <td><strong>Premium</strong></td>
+            <td>2 años</td>
+            <td>Cobertura total + accidentes</td>
+            <td>24/7 Remoto + Visita</td>
+            <td>3,200</td>
+          </tr>
+          <tr>
+            <td><strong>Empresarial</strong></td>
+            <td>3 años</td>
+            <td>Flota completa de equipos</td>
+            <td>Dedicado on-site</td>
+            <td>Consultar</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card-section">
+      <h2>🛒 Tabla de Pedidos Recientes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>N° Pedido</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#1001</td>
+            <td>Laptop Dell Inspiron</td>
+            <td>2</td>
+            <td><span class="badge badge-verde">Entregado</span></td>
+            <td>10/06/2025</td>
+          </tr>
+          <tr>
+            <td>#1002</td>
+            <td>iPhone 15 Pro</td>
+            <td>1</td>
+            <td><span class="badge badge-amarillo">En tránsito</span></td>
+            <td>15/06/2025</td>
+          </tr>
+          <tr>
+            <td>#1003</td>
+            <td>Monitor HP 24"</td>
+            <td>3</td>
+            <td><span class="badge badge-azul">Procesando</span></td>
+            <td>18/06/2025</td>
+          </tr>
+          <tr>
+            <td>#1004</td>
+            <td>Audífonos Sony WH</td>
+            <td>1</td>
+            <td><span class="badge badge-verde">Entregado</span></td>
+            <td>20/06/2025</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TÓPICO 4.5: FORMULARIO -->
+    <section class="card-section">
+      <h2>📬 Formulario de Consulta / Pedido</h2>
+      <p>Completa el formulario y nos pondremos en contacto contigo a la brevedad.</p>
+
+      <div class="form-wrapper">
+        <div class="form-group">
+          <label for="nombre">Nombre completo *</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej: María González" required>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo electrónico *</label>
+          <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono" name="telefono" placeholder="809-000-0000">
+        </div>
+
+        <div class="form-group">
+          <label for="categoria">Categoría de producto *</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">-- Selecciona una categoría --</option>
+            <option value="laptop">Laptops</option>
+            <option value="smartphone">Smartphones</option>
+            <option value="monitor">Monitores</option>
+            <option value="accesorio">Accesorios</option>
+            <option value="tablet">Tablets</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="garantia">Plan de garantía</label>
+          <select id="garantia" name="garantia">
+            <option value="basico">Básico (incluido)</option>
+            <option value="estandar">Estándar - RD$ 1,500</option>
+            <option value="premium">Premium - RD$ 3,200</option>
+            <option value="empresarial">Empresarial (consultar)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tipo de solicitud *</label>
+          <div class="radio-group">
+            <label><input type="radio" name="tipo" value="compra"> Compra</label>
+            <label><input type="radio" name="tipo" value="consulta"> Consulta</label>
+            <label><input type="radio" name="tipo" value="soporte"> Soporte técnico</label>
+            <label><input type="radio" name="tipo" value="garantia"> Garantía</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Preferencias de contacto</label>
+          <div class="check-group">
+            <label><input type="checkbox" name="contacto" value="email"> Correo electrónico</label>
+            <label><input type="checkbox" name="contacto" value="whatsapp"> WhatsApp</label>
+            <label><input type="checkbox" name="contacto" value="llamada"> Llamada telefónica</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje o descripción del producto</label>
+          <textarea id="mensaje" name="mensaje" rows="4"
+            placeholder="Describe el producto que buscas o tu consulta..."></textarea>
+        </div>
+
+        <button type="button" onclick="enviarFormulario()" class="btn-enviar">
+          Enviar Consulta ✉️
+        </button>
+      </div>
+
+      <div id="confirmacion" class="confirmacion" style="display:none;"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 TechZone | Desarrollado por Lia Ramirez Fernandez | ISO310 - Unidad 4</p>
+    <p>
+      <a href="https://www.w3schools.com/html/" target="_blank">Referencia HTML - W3Schools</a> |
+      <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank">MDN Web Docs</a>
+    </p>
+  </footer>
+
+  <script>
+    function enviarFormulario() {
+      const nombre   = document.getElementById("nombre").value.trim();
+      const correo   = document.getElementById("correo").value.trim();
+      const categoria = document.getElementById("categoria").value;
+
+      if (!nombre || !correo || !categoria) {
+        alert("Por favor completa los campos obligatorios (*).");
+        return;
+      }
+
+      const conf = document.getElementById("confirmacion");
+      conf.style.display = "block";
+      conf.innerHTML = `
+        <h3>✅ ¡Consulta enviada con éxito!</h3>
+        <p>Gracias, <strong>${nombre}</strong>. Nos comunicaremos contigo
+        al correo <strong>${correo}</strong> a la brevedad.</p>
+        <p>Categoría seleccionada: <strong>${categoria}</strong></p>
+      `;
+      conf.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>
